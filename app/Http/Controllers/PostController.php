@@ -3,18 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \App\Post;
 
 class PostController extends Controller
 {
-    // 呈现文章列表页面
+    // 文章のページを表示
     public function index(){
-        $posts=[
-            ['title'=>'this is title1',],
-            ['title'=>'this is title2',],
-            ['title'=>'this is title3',],
-            ['title'=>'this is title4',]
-
-        ];
+        //新たしい文章上に並ぶ,$postsは幾つかのオブジェクトを格納する配列です
+        $posts=Post::orderBy('created_at','desc')->paginate(6);
         return view("post/index",compact('posts'));
 
     }
