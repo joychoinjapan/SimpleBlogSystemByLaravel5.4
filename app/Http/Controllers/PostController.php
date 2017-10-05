@@ -15,8 +15,8 @@ class PostController extends Controller
 
     }
     // 呈现文章详情
-    public function show(){
-        return view('post/show',['title'=>'this is title','isShow'=>false]);
+    public function show(Post $post){
+        return view('post/show',compact('post'));
     }
     //创建文章页面
     public function create(){
@@ -24,7 +24,16 @@ class PostController extends Controller
     }
     //保存提交文章
     public function store(){
-        return;
+        //验证操作
+        $this->validate(request(),[
+            'title'=>'required|string|max:100|min:5',
+            'content'=>'required|string|min:10'
+        ]);
+        //逻辑
+        $post=Post::create(request(['title','content']));
+
+        //页面的渲染
+        return redirect('/posts');
     }
     //编辑文章页面
     public function edit(){
@@ -37,5 +46,12 @@ class PostController extends Controller
     //删除文章
     public function delete(){
         return view();
+    }
+
+    //上传图片
+    public function imageUpload(Request $request){
+        //request->file 为获取一个文件 ->storePublicly包存一个文件的文件名重新命名，使用时间戳
+        $path=$request->file('wangEditorH5File')->storePublicly(md5(time()));
+        return asset('storage/'. $path);
     }
 }
