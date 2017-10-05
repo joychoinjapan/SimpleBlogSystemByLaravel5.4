@@ -19,8 +19,7 @@ Route::get('/', function () {
 //文章列表页
 Route::get('/posts','PostController@index');
 
-//删除文章
-Route::get('/posts/delete','PostController@delete');
+
 
 //图片上传
 Route::post('/posts/image/upload','PostController@imageUpload');
@@ -37,7 +36,8 @@ Route::get('/posts/{post}','PostController@show');
 //编辑文章  1.页面 2. 提交
 Route::get('/posts/{post}/edit','PostController@edit');
 Route::put('/posts/{post}','PostController@update');
-
+//删除文章
+Route::get('/posts/{post}/delete','PostController@delete');
 
 
 
