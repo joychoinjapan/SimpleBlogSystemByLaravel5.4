@@ -53,7 +53,7 @@ class PostController extends Controller
 
         $post->save();
         //渲染
-        return redirect('/posts/{$post->id}');
+        return redirect("/posts/{$post->id}");
     }
     //删除文章
     public function delete(Post $post){
