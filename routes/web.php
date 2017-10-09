@@ -12,6 +12,33 @@
 */
 
 
+
+//ユーザーのモジュール
+
+//アカウントを作成のページを表示
+Route::get('/register','RegisterController@index');
+
+//アカウントの作成する
+Route::post('/register','RegisterController@register');
+
+//サイインのページを表示
+Route::get('/login','LoginController@index');
+
+//サイインする
+Route::post('/login','LoginController@login');
+
+//サイインアウトする
+Route::get('/logout','LoginController@logout');
+
+//アカウントの詳細を表示
+Route::get('/user/me/setting','UserController@setting');
+
+//アカウントの情報を設定
+Route::post('/user/setting','UserController@settingStore');
+
+
+//文章のモジュール
+
 Route::get('/', function () {
     return view('welcome');
 });
