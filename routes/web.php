@@ -13,7 +13,9 @@
 
 
 
-//ユーザーのモジュール
+/*
+ * module:user
+ */
 
 //アカウントを作成のページを表示
 Route::get('/register','RegisterController@index');
@@ -34,10 +36,13 @@ Route::get('/logout','LoginController@logout');
 Route::get('/user/me/setting','UserController@setting');
 
 //アカウントの情報を設定
-Route::post('/user/setting','UserController@settingStore');
+Route::post('/user/me/setting','UserController@settingStore');
 
 
-//文章のモジュール
+
+/*
+ * module:post
+ */
 
 Route::get('/', function () {
     return view('welcome');
@@ -67,5 +72,8 @@ Route::put('/posts/{post}','PostController@update');
 Route::get('/posts/{post}/delete','PostController@delete');
 
 
-
+/*
+ * module:comment
+ */
+Route::post('/posts/{post}/comment','PostController@comment');
 
