@@ -77,3 +77,9 @@ Route::get('/posts/{post}/delete','PostController@delete');
  */
 Route::post('/posts/{post}/comment','PostController@comment');
 
+/*
+ * module:zan
+ */
+Route::get('/posts/{post}/zan','PostController@zan');
+Route::get('/posts/{post}/unzan','PostController@unzan');
+
