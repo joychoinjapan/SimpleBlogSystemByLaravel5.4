@@ -22,15 +22,16 @@
 
         {!!$post->content!!}
 
+
+        @if($post->zan(\Illuminate\Support\Facades\Auth::id())->exists())
         <div>
-            @if($post->zan(\Illuminate\Support\Facades\Auth::id())->exists())
-            <a href="/posts/{{$post->id}}/unzan" type="button" class="btn btn-default btn-lg">取消赞</a>
+            <a href="/posts/{{$post->id}}/unzan" type="button" class="btn btn-default btn-lg">いいねを取り消す</a>
         </div>
-            @else
+        @else
         <div>
-            <a href="/posts/{{$post->id}}/zan" type="button" class="btn btn-primary btn-lg">赞</a>
+            <a href="/posts/{{$post->id}}/zan" type="button" class="btn btn-primary btn-lg">いいね</a>
         </div>
-            @endif
+        @endif
     </div>
 
     <div class="panel panel-default">
