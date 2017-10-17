@@ -4,9 +4,26 @@ namespace App;
 
 use App\Model;
 //表->posts
+use Laravel\Scout\Searchable;
 
 class Post extends Model
 {
+    use Searchable;
+
+    //定于里面的type
+    public function searchableAs()
+    {
+        return "post";
+    }
+
+    //定义哪些字段需要搜索
+    public function toSearchableArray()
+    {
+        return[
+            'title'=>$this->title,
+            'content'=>$this->content,
+        ];
+    }
 
     //link with user
     public function user()
