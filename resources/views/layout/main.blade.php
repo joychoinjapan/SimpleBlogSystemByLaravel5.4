@@ -46,8 +46,8 @@
         @include('layout.sidebar')
         {{--sidebar--}}
     </div>
-</div><!-- /.row -->
-</div><!-- /.container -->
+</div>
+{{--container--}}
 {{--footer--}}
 @include('layout.footer')
 {{--footer--}}
