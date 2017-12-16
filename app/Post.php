@@ -4,6 +4,7 @@ namespace App;
 
 use App\Model;
 //表->posts
+use Illuminate\Database\Eloquent\Builder;
 use Laravel\Scout\Searchable;
 
 class Post extends Model
@@ -49,4 +50,27 @@ class Post extends Model
     {
         return $this->hasMany(\App\Zan::class);
     }
+
+
+    //The post belongs to the author
+    public function scopeAuthorBy(Builder $query,$user_id)
+    {
+        return $query->where('user_id',$user_id);
+    }
+
+    public function postTopics()
+    {
+        return $this->hasMany(PostTopic::class,'post_id','id');
+    }
+
+    //The post not belongs to the topic
+    public function scopeTopicNotBy(Builder $query,$topic_id)
+    {
+        return $query->doesntHave('postTopics','and',function($q) use($topic_id){
+            $q->where('topic_id',$topic_id);
+        });
+    }
+
+
+
 }
